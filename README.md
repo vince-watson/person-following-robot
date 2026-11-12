@@ -139,4 +139,4 @@ Target at ~80 cm; robot drives in at PWM 150 and stops when it crosses 40 cm. Ov
 
 ## Author
 
-**Vince Watson Jr.** — Computer Engineering, Florida State University
+**Vince Watson Jr.** — Electrical Engineering, Florida State University
