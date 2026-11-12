@@ -1,10 +1,10 @@
-# Person-Following Autonomous Robot
+# person-following autonomous robot
 
 A 4WD robot that detects a person and follows them at a set distance — built from the ground up in C++ on Arduino, with a Raspberry Pi vision layer planned.
 
 **Status:** 🚧 In progress — distance-holding (zone controller) working; proportional control and camera tracking next.
 
-![Robot](docs/images/sensor-mount.jpeg)
+
 <!-- Add demo video link here -->
 
 ---
