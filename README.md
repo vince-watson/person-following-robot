@@ -37,13 +37,13 @@ Instead of building "person following" all at once, the project is broken into s
 
 | Signal | Arduino pin |
 |---|---|
-Left motor is ENB D6, IN3/IN4 D7/D8;
-right motor is ENA D9, IN1/IN2 D12/D11
+| Left motor ENB (PWM speed) | D6 |
+| Left motor IN3 / IN4 (direction) | D7 / D8 |
+| Right motor ENA (PWM speed) | D9 |
+| Right motor IN1 / IN2 (direction) | D12 / D11 |
 | HC-SR04 TRIG | D4 |
 | HC-SR04 ECHO | D3 |
 | HC-SR04 VCC / GND | 5V / GND |
-
----
 
 ## Software
 
@@ -74,6 +74,7 @@ Full write-ups: [motor thresholds](docs/tests/motor-pwm-min.md) · [sensor accur
 
 ### 1. Motor PWM start thresholds
 
+
 Ramped PWM from 0 upward in steps of 10 and recorded where each side began turning.
 
 | Side | PWM to start moving |
@@ -81,9 +82,7 @@ Ramped PWM from 0 upward in steps of 10 and recorded where each side began turni
 | Left | 80 |
 | Right | 100 |
 
-**Takeaway:** the LEFT side starts more easily, but right is faster when moving so the robot drifts left (observed). A per-side trim is being added to correct this.
-
-Diagnosed swapped motor-channel mapping with a wheels-in-air test, then tuned a PWM trim that cut straight-line drift from ~18 cm to ≤3.6 cm over ~1 m
+*Note: these were originally recorded with the sides swapped. A wheels-in-air test (below) revealed the code's motor channels were mapped to the wrong sides.*
 
 ### 2. Ultrasonic sensor accuracy and calibration
 
