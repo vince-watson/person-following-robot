@@ -78,10 +78,12 @@ Ramped PWM from 0 upward in steps of 10 and recorded where each side began turni
 
 | Side | PWM to start moving |
 |---|---|
-| Left | 100 |
-| Right | 80 |
+| Left | 80 |
+| Right | 100 |
 
-**Takeaway:** the right side starts more easily, so at equal PWM the robot drifts left (observed). A per-side trim is being added to correct this.
+**Takeaway:** the LEFT side starts more easily, but right is faster when moving so the robot drifts left (observed). A per-side trim is being added to correct this.
+
+Diagnosed swapped motor-channel mapping with a wheels-in-air test, then tuned a PWM trim that cut straight-line drift from ~18 cm to ≤3.6 cm over ~1 m
 
 ### 2. Ultrasonic sensor accuracy
 
