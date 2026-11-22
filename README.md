@@ -85,8 +85,6 @@ Ramped PWM from 0 upward in steps of 10 and recorded where each side began turni
 
 Diagnosed swapped motor-channel mapping with a wheels-in-air test, then tuned a PWM trim that cut straight-line drift from ~18 cm to ≤3.6 cm over ~1 m
 
-### 2. Ultrasonic sensor accuracy
-
 ### 2. Ultrasonic sensor accuracy and calibration
 
 Flat wall/door target, sensor level, 10-sample averages at each distance.
@@ -143,9 +141,9 @@ Target at ~80 cm; robot drives in at PWM 150 and stops when it crosses 40 cm. Ov
 
 ## Roadmap
 
-- [ ] Per-side trim so the robot drives straight
+- [x] Per-side trim so the robot drives straight
 - [ ] Proportional distance control ($\text{speed} = K_p \cdot (d - d_{\text{target}})$) — re-run overshoot test and compare
-- [ ] Apply sensor calibration factor and re-test accuracy
+- [x] Apply sensor calibration factor and re-test accuracy
 - [ ] Differential-drive kinematics: command forward speed $v$ and turn rate $\omega$, convert to wheel speeds
 - [ ] Raspberry Pi + camera: follow a colored target, then a person (MediaPipe)
 - [ ] Pi ↔ Arduino serial link, then ROS2 node architecture
