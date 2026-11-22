@@ -19,7 +19,7 @@ class Motor{
     pinMode(pinTwo, OUTPUT);
     pinMode(enablePin, OUTPUT);
   }
-//movement methods
+//movement methods3
   void forward(int speed = 155){
     digitalWrite(pinOne, HIGH);
     digitalWrite(pinTwo, LOW);
@@ -108,6 +108,7 @@ class Robot{
   private:
   Motor leftMotor;
   Motor rightMotor;
+  int trim =20; //right mside is stronger, give it less power
 
   public:
   //passes all pins through constructor, then intialzier list splits them up into dedicated motors
@@ -133,12 +134,12 @@ class Robot{
 
   void forward(int speed = 155){
     leftMotor.forward(speed);
-    rightMotor.forward(speed);
+    rightMotor.forward(speed - trim);
   }
 
   void backward(int speed = 155){
     leftMotor.backward(speed);
-    rightMotor.backward(speed);
+    rightMotor.backward(speed - trim);
   }
 
   void stop(){
@@ -146,11 +147,17 @@ class Robot{
     rightMotor.stop();
   }
 
+  void testLeftOnly(){
+  leftMotor.forward(150);
+  rightMotor.stop();
+}
+
+
 
 };
   
 //giving pin numbers actual values 
-Robot myRobot(9, 12, 11, 6, 7, 8);
+Robot myRobot(6, 7, 8, 9, 12, 11);
 Sensor frontSensor(4, 3); //(trigPin, echoPIn actual values)
 
 void motorTest(){
@@ -170,6 +177,7 @@ Serial.begin(9600); //serial monitor connected
 myRobot.stop(); //turn off; like parking car
 
 
+
  
 /*
 RAMP PWMmin TEST
@@ -182,12 +190,28 @@ for(int speed=0; speed<255; speed+=10){
 }
 
 */
-  
+/* had to swap motor pins left was right, so actually left PWM is weaker
+myRobot.testLeftOnly();
+delay(3000);
+myRobot.stop();
+*/
+
+
+/*
+STRAIGHT LINE TEST
+myRobot.forward(150);
+delay(2500);
+myRobot.stop();
+*/
+
+
+
 
 
 
 
 }
+
 unsigned long lastRead =0;
 unsigned long lastPrint =0;
 float d =0;
@@ -195,6 +219,7 @@ float d =0;
 
 //happens over & over
 void loop() {
+  
  //should get 4 readings per second
 if(millis()- lastPrint >=300){
   lastPrint = millis();
@@ -221,6 +246,7 @@ if(millis() - lastRead >= 60){ //has 60 ms passed?
 
 
   }
+  
 }
 
  
