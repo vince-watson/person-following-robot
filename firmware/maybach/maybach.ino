@@ -42,6 +42,8 @@ void stop(){
 
 };
 
+const float CAL_FACTOR = 1.03; //wall test: sensor read ~3% short
+
  class Sensor{
     private:
     int trigPin; //output
@@ -72,7 +74,9 @@ void stop(){
 
   
       float distance = (duration * 0.0343/2);
-      return distance;
+      float accurateDist = CAL_FACTOR * distance;
+
+      return accurateDist;
 
     }
     
@@ -190,7 +194,7 @@ for(int speed=0; speed<255; speed+=10){
 }
 
 */
-/* had to swap motor pins left was right, so actually left PWM is weaker
+/* had to swap motor pins left was right, so actually left PWM starts easier (80
 myRobot.testLeftOnly();
 delay(3000);
 myRobot.stop();
@@ -219,6 +223,7 @@ float d =0;
 
 //happens over & over
 void loop() {
+ 
   
  //should get 4 readings per second
 if(millis()- lastPrint >=300){
