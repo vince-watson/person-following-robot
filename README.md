@@ -37,10 +37,8 @@ Instead of building "person following" all at once, the project is broken into s
 
 | Signal | Arduino pin |
 |---|---|
-| Left motor ENA (PWM speed) | D9 |
-| Left motor IN1 / IN2 (direction) | D12 / D11 |
-| Right motor ENB (PWM speed) | D6 |
-| Right motor IN3 / IN4 (direction) | D7 / D8 |
+Left motor is ENB D6, IN3/IN4 D7/D8;
+right motor is ENA D9, IN1/IN2 D12/D11
 | HC-SR04 TRIG | D4 |
 | HC-SR04 ECHO | D3 |
 | HC-SR04 VCC / GND | 5V / GND |
