@@ -87,7 +87,11 @@ Diagnosed swapped motor-channel mapping with a wheels-in-air test, then tuned a 
 
 ### 2. Ultrasonic sensor accuracy
 
+### 2. Ultrasonic sensor accuracy and calibration
+
 Flat wall/door target, sensor level, 10-sample averages at each distance.
+
+**Before calibration:**
 
 | Actual (cm) | Measured (cm) | Error (cm) | Error (%) | Spread |
 |---|---|---|---|---|
@@ -99,10 +103,22 @@ Flat wall/door target, sensor level, 10-sample averages at each distance.
 | 101.6 | 98.60 | −3.0 | 3.0% | ±0.03 |
 | 152.4 | 148.53 | −3.9 | 2.5% | ±0.03 |
 
-**Takeaways:**
-- **Highly repeatable** (±0.2 cm or better with averaging).
-- **Consistently reads ~3% short** beyond ~50 cm — a systematic bias, not random noise. Correctable with a calibration factor of ~1.03 (to be applied and re-tested).
+The sensor was highly repeatable but consistently read ~3% short, a systematic bias rather than random noise. I added a calibration factor in `readCM()`:
 
+```cpp
+const float CAL_FACTOR = 1.03;  // wall test: sensor read ~3% short
+```
+
+**After calibration:**
+
+| Actual (cm) | Before (cm) | After (cm) | Error before | Error after |
+|---|---|---|---|---|
+| 30.5 | 29.85 | 30.78 | −2.1% | +0.9% |
+| 50.8 | 49.4 | 50.50 | −2.8% | −0.6% |
+| 101.6 | 98.60 | 101.44 | −3.0% | −0.2% |
+| 152.4 | 148.53 | 151.16 | −2.5% | −0.8% |
+
+*
 ### 3. Zone controller stopping overshoot
 
 Target at ~80 cm; robot drives in at PWM 150 and stops when it crosses 40 cm. Overshoot = 40 − final distance.
